@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://qconsulting.ca/fo3/ModConfig5.0.xsd">
+  <moduleName>Dynamic Unrelenting Force</moduleName>
+  <installSteps order="Explicit">
+    <installStep name="Choose Version">
+      <optionalFileGroups order="Explicit">
+        <group name="Version" type="SelectExactlyOne">
+          <plugins order="Explicit">
+            <plugin name="Standalone">
+              <description>Recommended for most users. Installs DynamicUnrelentingForce as an independent SKSE plugin. It does not read ShoutProgression settings.</description>
+              <files>
+                <folder source="options/Standalone" destination="" priority="0" />
+              </files>
+              <typeDescriptor>
+                <type name="Recommended" />
+              </typeDescriptor>
+            </plugin>
+            <plugin name="ShoutProgression Addon">
+              <description>Installs the earlier ShoutProgressionPushSubmod build. Use this only if you specifically want the ShoutProgression-named addon files and configuration path.</description>
+              <files>
+                <folder source="options/ShoutProgressionAddon" destination="" priority="0" />
+              </files>
+              <typeDescriptor>
+                <type name="Optional" />
+              </typeDescriptor>
+            </plugin>
+          </plugins>
+        </group>
+      </optionalFileGroups>
+    </installStep>
+  </installSteps>
+</config>
