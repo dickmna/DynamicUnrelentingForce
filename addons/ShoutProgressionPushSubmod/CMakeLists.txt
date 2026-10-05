@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.24)
 
 project(
 	ShoutProgressionPushSubmod
-	VERSION 0.5.1
+	VERSION 0.6.1
 	LANGUAGES CXX
 )
 
@@ -10,17 +10,9 @@ set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-set(BUILD_TESTS OFF CACHE BOOL "" FORCE)
-set(SKSE_SUPPORT_XBYAK OFF CACHE BOOL "" FORCE)
-set(ENABLE_SKYRIM_SE ON CACHE BOOL "" FORCE)
-set(ENABLE_SKYRIM_AE ON CACHE BOOL "" FORCE)
-set(ENABLE_SKYRIM_VR OFF CACHE BOOL "" FORCE)
-
-if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/../../external/CommonLibSSE-NG-lite/CMakeLists.txt")
-	add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/../../external/CommonLibSSE-NG-lite" external/CommonLibSSE-NG-lite EXCLUDE_FROM_ALL)
-else()
-	find_package(CommonLibSSE CONFIG REQUIRED)
-endif()
+list(PREPEND CMAKE_PREFIX_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../../build/commonlib-installed")
+find_package(directxtk CONFIG REQUIRED)
+find_package(CommonLibSSE 10.0.1 CONFIG REQUIRED)
 
 add_library(${PROJECT_NAME} SHARED
 	src/main.cpp

@@ -357,20 +357,27 @@ namespace
 	}
 }
 
-SKSEPluginInfo(
-	.Version = { 1, 0, 0, 0 },
-	.Name = PLUGIN_NAME,
-	.Author = "Dynamic Unrelenting Force contributors",
-	.StructCompatibility = SKSE::StructCompatibility::Independent,
-	.RuntimeCompatibility = SKSE::VersionIndependence::AddressLibrary,
-	.MinimumSKSEVersion = { 2, 2, 0, 0 }
-)
+SKSEPluginVersion = []() constexpr {
+	SKSE::PluginVersionData data;
+	data.PluginVersion({ 1, 1, 1, 0 });
+	data.PluginName(PLUGIN_NAME);
+	data.AuthorName("dickmna");
+	data.UsesAddressLibrary();
+	data.UsesUpdatedStructs();
+	data.CompatibleVersions({ { 1, 7, 104, 0 } });
+	data.MinimumRequiredXSEVersion({ 2, 3, 1, 0 });
+	return data;
+}();
 
 SKSEPluginLoad(const SKSE::LoadInterface* a_skse)
 {
+	if (!a_skse || a_skse->IsEditor() || a_skse->RuntimeVersion() != REL::Version{ 1, 7, 104, 0 }) {
+		return false;
+	}
+
 	SKSE::Init(a_skse);
 	SetupLog();
-	SKSE::log::info("{} loaded", PLUGIN_NAME);
+	SKSE::log::info("{} v1.1.1 loaded for Skyrim 1.7.104", PLUGIN_NAME);
 	LoadSettings();
 
 	const auto papyrus = SKSE::GetPapyrusInterface();

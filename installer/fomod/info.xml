@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <fomod>
   <Name>Dynamic Unrelenting Force</Name>
-  <Author>Codex</Author>
-  <Version>1.0.0</Version>
-  <Description>Choose between the standalone DynamicUnrelentingForce build and the earlier ShoutProgression addon build.</Description>
+  <Author>dickmna</Author>
+  <Version>1.1.1</Version>
+  <Description>Skyrim Steam 1.7.104 / SKSE 2.3.1. Choose between the standalone DynamicUnrelentingForce build and the ShoutProgression addon build.</Description>
 </fomod>

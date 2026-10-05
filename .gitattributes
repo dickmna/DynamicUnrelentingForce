@@ -2,3 +2,12 @@
 *.sln text eol=crlf
 *.vcxproj text eol=crlf
 *.vcxproj.filters text eol=crlf
+
+# Preserve the published native, Papyrus, and configuration source bytes.
+src/** -text
+package/** -text
+addons/**/src/** -text
+addons/**/package/** -text
+LICENSE -text
+CommonLib-COPYING.txt -text
+CommonLib-EXCEPTIONS.md -text

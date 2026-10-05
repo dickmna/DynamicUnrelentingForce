@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://qconsulting.ca/fo3/ModConfig5.0.xsd">
   <moduleName>Dynamic Unrelenting Force</moduleName>
+  <requiredInstallFiles>
+    <folder source="Docs" destination="Docs" priority="0" />
+  </requiredInstallFiles>
   <installSteps order="Explicit">
     <installStep name="Choose Version">
       <optionalFileGroups order="Explicit">
@@ -16,7 +19,7 @@
               </typeDescriptor>
             </plugin>
             <plugin name="ShoutProgression Addon">
-              <description>Installs the earlier ShoutProgressionPushSubmod build. Use this only if you specifically want the ShoutProgression-named addon files and configuration path.</description>
+              <description>Installs ShoutProgressionPushSubmod 0.6.1 for Skyrim Steam 1.7.104 / SKSE 2.3.1. Use this if you want to import Shout Progression settings.</description>
               <files>
                 <folder source="options/ShoutProgressionAddon" destination="" priority="0" />
               </files>

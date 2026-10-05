@@ -1,4 +1,8 @@
-# Dynamic Unrelenting Force
+# Dynamic Unrelenting Force 1.1.1
+
+**Skyrim Steam 1.7.104 / SKSE64 2.3.1 only. Skyrim 1.6.1170 users should keep 1.1.0; this compatibility update is not needed on 1170.**
+
+Player downloads contain runtime files and license notices. Corresponding source, dependencies, and build instructions are available in this GitHub repository.
 
 Dynamic Unrelenting Force is an SKSE/CommonLibSSE-NG plugin for Skyrim Special Edition and Anniversary Edition. It makes the knockback force of the third word of Unrelenting Force scale with the player's dragon soul progress.
 
@@ -29,6 +33,8 @@ Release packages include compiled DLL and PEX files. The source repository inten
 
 ## Compatibility
 
+This release targets Skyrim Steam 1.7.104, SKSE 2.3.1, and the matching Anniversary Edition Address Library. Other runtime versions are rejected before registering the plugin. DLLs are rebuilt with CommonLibSSE-NG 10.0.1; gameplay force scaling and the Papyrus API are unchanged.
+
 Dynamic Unrelenting Force is compatible with Shout Progression because it targets a different part of the shout pipeline:
 
 - Shout Progression scales shout magnitude, range, cooldown, and related magic effect values.
@@ -36,25 +42,16 @@ Dynamic Unrelenting Force is compatible with Shout Progression because it target
 
 Use either the standalone version or the Shout Progression addon version. Do not install both at the same time because both replace `Scripts/VoicePushEffectScript.pex`.
 
-## Build Notes
+Only the third word of Unrelenting Force uses the vanilla push script. If enemies only stagger, verify that this mod wins conflicts for `Scripts/VoicePushEffectScript.pex`, and check `DynamicUnrelentingForce.log` (or `ShoutProgressionPushSubmod.log` for the addon) for both native-function registration and `VoicePushEffectScript scaled PushForce` entries. A loaded DLL alone does not prove that the replacement script is running.
 
-Requirements:
+Engine knockback immunity and enemies dying before the push is applied can still prevent visible knockback. This release preserves the single vanilla `PushActorAway` call and does not add corpse physics impulses.
 
-- Visual Studio 2022 with C++ toolchain
-- CMake 3.24 or newer
-- SKSE-compatible Skyrim SE/AE runtime
-- CommonLibSSE-NG available through CMake, or checked out at `external/CommonLibSSE-NG-lite`
-- Skyrim Papyrus compiler for rebuilding `.pex` files from the included `.psc` sources
+## Build
 
-Example CMake build:
+The release was compiled with Visual Studio 2022 MSVC 19.44, C++23, Release, and the dynamic MSVC CRT. Use the included CommonLibSSE-NG 10.0.1 and dependency sources under `dependencies/`.
 
-```powershell
-cmake -S . -B build/release -G Ninja -DCMAKE_BUILD_TYPE=Release
-cmake --build build/release
-```
-
-The CMake build produces the DLL and copies the INI and Papyrus source files into a `Data` layout under the build directory. Compile the Papyrus scripts separately when preparing a release package.
+See [building](docs/BUILDING.md) for dependency, plugin, and packaging commands. [SOURCE_PROVENANCE.json](SOURCE_PROVENANCE.json) records the original published source files and hashes.
 
 ## License
 
-MIT License. See `LICENSE`.
+Original plugin source: MIT; see `LICENSE`. Linked CommonLibSSE-NG uses GPL-3.0-or-later with its published exceptions; see [third-party notices](THIRD_PARTY.md).
